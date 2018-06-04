@@ -27,9 +27,15 @@ namespace Snake
 
         public void Clear()
         {
-            symb = ' ';
-            Draw();
+            Point P = new Point(this.x, this.y, ' ');
+            P.Draw();
+        }
 
+        public void Priravnyat(Point P)
+        {
+            this.x = P.x;
+            this.y = P.y;
+            
         }
     }
 }

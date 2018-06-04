@@ -33,13 +33,47 @@ namespace Snake
             switch (direction)
             {
                 case Direction.Right:
+
                     Zmeya[Zmeya.Count-1].Clear();
+
+                    
+                    for (int i = 1; i < Zmeya.Count; i++)
+                    {
+                        Zmeya[i].Priravnyat(Zmeya[i - 1]);
+                        Zmeya[i].Draw();                       
+                    }
+
+                    Zmeya[0].x = Zmeya[0].x + 1;
+                    Zmeya[0].Draw();
+
+                    break;
+
+                case Direction.Left:
+                    Zmeya[Zmeya.Count - 1].Clear();
                     foreach (Point p in Zmeya)
                     {
-                        p.x = p.x+1;
+                        p.x = p.x - 1;
                         p.Draw();
                     }
-                    
+
+                    break;
+                case Direction.Up:
+                    Zmeya[Zmeya.Count - 1].Clear();
+                    foreach (Point p in Zmeya)
+                    {
+                        p.x = p.y - 1;
+                        p.Draw();
+                    }
+
+                    break;
+                case Direction.Down:
+                    Zmeya[Zmeya.Count - 1].Clear();
+                    foreach (Point p in Zmeya)
+                    {
+                        p.x = p.y + 1;
+                        p.Draw();
+                    }
+
                     break;
 
             }
