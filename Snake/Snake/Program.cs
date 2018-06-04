@@ -10,7 +10,9 @@ namespace Snake
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello!");
+            Console.SetWindowSize(80, 25);
+            Console.SetBufferSize(80, 25);
+
         }
     }
 }
