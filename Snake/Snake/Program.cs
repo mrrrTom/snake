@@ -13,6 +13,11 @@ namespace Snake
             Console.SetWindowSize(80, 25);
             Console.SetBufferSize(80, 25);
 
+            
+
+            Walls new_walls = new Walls(25, 80);
+            new_walls.Draw();
+            Console.ReadKey();
         }
     }
 }
