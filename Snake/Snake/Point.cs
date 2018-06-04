@@ -24,5 +24,12 @@ namespace Snake
             Console.SetCursorPosition(x, y);
             Console.Write(symb);
         }
+
+        public void Clear()
+        {
+            symb = ' ';
+            Draw();
+
+        }
     }
 }
