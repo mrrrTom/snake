@@ -14,14 +14,34 @@ namespace Snake
             Console.SetWindowSize(80, 25);
             Console.SetBufferSize(80, 25);
             Snake snake = new Snake();
+            
+            Direction direction = Direction.Right;
            // Walls new_walls = new Walls(25, 80);
             // new_walls.Draw();
             while (true)
             {
-               // snake.Move(Direction.Right);
-                //snake.Move(Direction.Up);
-                //snake.Move(Direction.Left);
-                snake.Move(Direction.Down);
+                if (Console.KeyAvailable)
+                {
+                  ConsoleKeyInfo Key =  Console.ReadKey();
+                    if (Key.Key == ConsoleKey.LeftArrow)
+                    {
+                        direction = Direction.Left;
+                    }
+                    if(Key.Key == ConsoleKey.UpArrow)
+                    {
+                        direction = Direction.Up;
+                    }
+                    if (Key.Key == ConsoleKey.DownArrow)
+                    {
+                        direction = Direction.Down;
+                    }
+                    if(Key.Key == ConsoleKey.RightArrow)
+                    {
+                        direction = Direction.Right;
+                    }
+                }
+                snake.Move(direction);
+                
                 Thread.Sleep(200);
             }
 
