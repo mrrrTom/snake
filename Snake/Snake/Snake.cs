@@ -25,12 +25,19 @@ namespace Snake
             }
 
         }
-
+        
         public void Move(Direction temp_direction)
         {
             this.direction = temp_direction;
-
-            switch (direction)
+            for (int i = Zmeya.Count - 1; i > 0; i--)
+            {
+                if ((Zmeya[i].x == Zmeya[0].x)&&(Zmeya[i].y==Zmeya[0].y))
+                {
+                    Point p = new Point(100, 100, '!');
+                    p.Draw();
+                }
+            }
+                switch (direction)
             {
                 case Direction.Right:
 
