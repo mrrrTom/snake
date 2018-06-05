@@ -18,7 +18,10 @@ namespace Snake
             // new_walls.Draw();
             while (true)
             {
-                snake.Move(Direction.Right);
+               // snake.Move(Direction.Right);
+                //snake.Move(Direction.Up);
+                //snake.Move(Direction.Left);
+                snake.Move(Direction.Down);
                 Thread.Sleep(200);
             }
 
