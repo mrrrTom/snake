@@ -13,7 +13,7 @@ namespace Snake
         {
             Console.SetWindowSize(80, 25);
             Console.SetBufferSize(80, 25);
-            Snake snake = new Snake();
+           Snake snake = new Snake();
             
             Direction direction = Direction.Right;
            // Walls new_walls = new Walls(25, 80);
@@ -39,9 +39,54 @@ namespace Snake
                     {
                         direction = Direction.Right;
                     }
+                    
                 }
-                snake.Move(direction);
-                
+                try
+                {
+                    snake.Move(direction);
+                }
+                catch (System.ArgumentOutOfRangeException)
+                {
+
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.SetCursorPosition(25, 8);
+                    Console.WriteLine("============================");
+                    Console.SetCursorPosition(26, 9);
+                    Console.WriteLine("И Г Р А    О К О Н Ч Е Н А");
+                    Console.SetCursorPosition(30, 10);
+                    Console.WriteLine("Автор: DANISSIMO");
+                    Console.SetCursorPosition(29, 11);
+                    Console.WriteLine("KAK ZGE YA EBASHU!!!");
+                    Console.SetCursorPosition(25, 12);
+                    Console.WriteLine("============================");
+                    while (true)
+                    {
+                        if (Console.KeyAvailable)
+                        {
+                            ConsoleKeyInfo Key = Console.ReadKey();
+                            if (Key.Key == ConsoleKey.LeftArrow)
+                            {
+                                direction = Direction.Left;
+                            }
+                            if (Key.Key == ConsoleKey.UpArrow)
+                            {
+                                direction = Direction.Up;
+                            }
+                            if (Key.Key == ConsoleKey.DownArrow)
+                            {
+                                direction = Direction.Down;
+                            }
+                            if (Key.Key == ConsoleKey.RightArrow)
+                            {
+                                direction = Direction.Right;
+                            }
+
+                        }
+                        snake.Move_(direction);
+                        Thread.Sleep(200);
+                    }
+                }
+
                 Thread.Sleep(200);
             }
 
