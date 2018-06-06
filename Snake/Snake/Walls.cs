@@ -37,6 +37,7 @@ namespace Snake
             }
         }
 
+        
         public void Draw()
         {
             foreach(Point p in hor_wall_top)

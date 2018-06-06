@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace Snake
 {
@@ -27,7 +28,7 @@ namespace Snake
             }
 
         }
-        public void Move(Direction temp_direction, eat eat)
+        public void Move(Direction temp_direction, eat eat, int shirina, int visota)
         {
 
             Point temp_Last = new Point(Zmeya[Zmeya.Count-1].x, Zmeya[Zmeya.Count-1].y, '@');
@@ -35,72 +36,78 @@ namespace Snake
             this.direction = temp_direction;
             for (int i = Zmeya.Count - 1; i > 0; i--)
             {
-                if ((Zmeya[i].x == Zmeya[0].x) && (Zmeya[i].y == Zmeya[0].y))
+                if (((Zmeya[i].x == Zmeya[0].x) && (Zmeya[i].y == Zmeya[0].y))||(Zmeya[0].x<=1||Zmeya[0].x>=shirina-1||Zmeya[0].y<=1||Zmeya[0].y>=visota-1))
                 {
                     Point p = new Point(100, 100, '!');
                     p.Draw();
                 }
 
             }
-
-            switch (direction)
+            try
             {
-                case Direction.Right:
+                switch (direction)
+                {
+                    case Direction.Right:
 
-                    Zmeya[Zmeya.Count - 1].Clear();
+                        Zmeya[Zmeya.Count - 1].Clear();
 
-                    for (int i = Zmeya.Count - 1; i > 0; i--)
-                    {
-                        Zmeya[i].Priravnyat(Zmeya[i - 1]);
-                        Zmeya[i].Draw();
-                        
-                        
-                    }
+                        for (int i = Zmeya.Count - 1; i > 0; i--)
+                        {
+                            Zmeya[i].Priravnyat(Zmeya[i - 1]);
+                            Zmeya[i].Draw();
 
-                    Zmeya[0].x = Zmeya[0].x + 1;
-                    Zmeya[0].Draw();
 
-                    break;
+                        }
 
-                case Direction.Left:
-                    Zmeya[Zmeya.Count - 1].Clear();
+                        Zmeya[0].x = Zmeya[0].x + 1;
+                        Zmeya[0].Draw();
 
-                    for (int i = Zmeya.Count - 1; i > 0; i--)
-                    {
-                        Zmeya[i].Priravnyat(Zmeya[i - 1]);
-                        Zmeya[i].Draw();
-                    }
+                        break;
 
-                    Zmeya[0].x = Zmeya[0].x - 1;
-                    Zmeya[0].Draw();
+                    case Direction.Left:
+                        Zmeya[Zmeya.Count - 1].Clear();
 
-                    break;
-                case Direction.Up:
-                    Zmeya[Zmeya.Count - 1].Clear();
+                        for (int i = Zmeya.Count - 1; i > 0; i--)
+                        {
+                            Zmeya[i].Priravnyat(Zmeya[i - 1]);
+                            Zmeya[i].Draw();
+                        }
 
-                    for (int i = Zmeya.Count - 1; i > 0; i--)
-                    {
-                        Zmeya[i].Priravnyat(Zmeya[i - 1]);
-                        Zmeya[i].Draw();
-                    }
+                        Zmeya[0].x = Zmeya[0].x - 1;
+                        Zmeya[0].Draw();
 
-                    Zmeya[0].y = Zmeya[0].y - 1;
-                    Zmeya[0].Draw();
+                        break;
+                    case Direction.Up:
+                        Zmeya[Zmeya.Count - 1].Clear();
 
-                    break;
-                case Direction.Down:
-                    Zmeya[Zmeya.Count - 1].Clear();
+                        for (int i = Zmeya.Count - 1; i > 0; i--)
+                        {
+                            Zmeya[i].Priravnyat(Zmeya[i - 1]);
+                            Zmeya[i].Draw();
+                        }
 
-                    for (int i = Zmeya.Count - 1; i > 0; i--)
-                    {
-                        Zmeya[i].Priravnyat(Zmeya[i - 1]);
-                        Zmeya[i].Draw();
-                    }
+                        Zmeya[0].y = Zmeya[0].y - 1;
+                        Zmeya[0].Draw();
 
-                    Zmeya[0].y = Zmeya[0].y + 1;
-                    Zmeya[0].Draw();
-                    break;
+                        break;
+                    case Direction.Down:
+                        Zmeya[Zmeya.Count - 1].Clear();
 
+                        for (int i = Zmeya.Count - 1; i > 0; i--)
+                        {
+                            Zmeya[i].Priravnyat(Zmeya[i - 1]);
+                            Zmeya[i].Draw();
+                        }
+
+                        Zmeya[0].y = Zmeya[0].y + 1;
+                        Zmeya[0].Draw();
+                        break;
+
+                }
+            }
+            catch(System.ArgumentOutOfRangeException)
+            {
+                throw;
             }
             if (eat == eat.yes)
             {
@@ -114,16 +121,18 @@ namespace Snake
             if (Zmeya[0].x == 27 && Zmeya[0].y == 12)
             {
                 Console.WriteLine("пошёл на хуй!!!");
-
-                for (int i = Zmeya.Count - 1; i > 0; i--)
+                while (true)
                 {
-                    Zmeya[i].Priravnyat(Zmeya[i - 1]);
-                    Zmeya[i].Draw();
+                    for (int i = Zmeya.Count - 1; i > 0; i--)
+                    {
+                        Zmeya[i].Priravnyat(Zmeya[i - 1]);
+                        Zmeya[i].Draw();
+                    }
+
+                    Zmeya[0].y = Zmeya[0].y + 1;
+                    Zmeya[0].Draw();
+                    Thread.Sleep(100);
                 }
-
-                Zmeya[0].y = Zmeya[0].y + 1;
-                Zmeya[0].Draw();
-
             }
             
             this.direction = temp_direction;
