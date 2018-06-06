@@ -17,8 +17,8 @@ namespace Snake
             eat eat = new eat();
 
             Direction direction = Direction.Right;
-            // Walls new_walls = new Walls(25, 80);
-            // new_walls.Draw();
+             Walls new_walls = new Walls(25, 80);
+             new_walls.Draw();
 
             Foodcreator fc = new Foodcreator(25, 80,'$');
 
