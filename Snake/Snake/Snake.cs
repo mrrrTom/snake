@@ -114,6 +114,16 @@ namespace Snake
             if (Zmeya[0].x == 27 && Zmeya[0].y == 12)
             {
                 Console.WriteLine("пошёл на хуй!!!");
+
+                for (int i = Zmeya.Count - 1; i > 0; i--)
+                {
+                    Zmeya[i].Priravnyat(Zmeya[i - 1]);
+                    Zmeya[i].Draw();
+                }
+
+                Zmeya[0].y = Zmeya[0].y + 1;
+                Zmeya[0].Draw();
+
             }
             
             this.direction = temp_direction;
