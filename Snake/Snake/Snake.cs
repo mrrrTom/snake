@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    class Snake
+   public class Snake
     {
       
       public  List<Point> Zmeya;
@@ -27,10 +27,10 @@ namespace Snake
             }
 
         }
-        public void Move(Direction temp_direction)
+        public void Move(Direction temp_direction, eat eat)
         {
 
-           
+            Point temp_Last = new Point(Zmeya[Zmeya.Count-1].x, Zmeya[Zmeya.Count-1].y, '@');
 
             this.direction = temp_direction;
             for (int i = Zmeya.Count - 1; i > 0; i--)
@@ -53,6 +53,8 @@ namespace Snake
                     {
                         Zmeya[i].Priravnyat(Zmeya[i - 1]);
                         Zmeya[i].Draw();
+                        
+                        
                     }
 
                     Zmeya[0].x = Zmeya[0].x + 1;
@@ -100,14 +102,18 @@ namespace Snake
                     break;
 
             }
-
+            if (eat == eat.yes)
+            {
+                Zmeya.Add(temp_Last);
+            }
+            
         }
         public void Move_(Direction temp_direction)
         {
 
             if (Zmeya[0].x == 27 && Zmeya[0].y == 12)
             {
-                Console.WriteLine("poshel na hui!");
+                Console.WriteLine("пошёл на хуй!!!");
             }
             
             this.direction = temp_direction;

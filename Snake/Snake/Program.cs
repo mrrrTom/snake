@@ -14,10 +14,14 @@ namespace Snake
             Console.SetWindowSize(80, 25);
             Console.SetBufferSize(80, 25);
            Snake snake = new Snake();
-            
+            eat eat = new eat();
+
             Direction direction = Direction.Right;
-           // Walls new_walls = new Walls(25, 80);
+            // Walls new_walls = new Walls(25, 80);
             // new_walls.Draw();
+
+            Foodcreator fc = new Foodcreator(25, 80,'$');
+
             while (true)
             {
                 if (Console.KeyAvailable)
@@ -43,7 +47,15 @@ namespace Snake
                 }
                 try
                 {
-                    snake.Move(direction);
+                    
+                    snake.Move(direction, eat);
+                    if (snake.Zmeya[0].x == fc.Korm.x && snake.Zmeya[0].y == fc.Korm.y)
+                    {
+                        eat = eat.yes;
+                        fc = new Foodcreator(25, 80, '$');
+                    }
+                    else { eat = eat.no; }
+
                 }
                 catch (System.ArgumentOutOfRangeException)
                 {
