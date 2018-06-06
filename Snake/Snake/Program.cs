@@ -99,7 +99,7 @@ namespace Snake
                     }
                 }
 
-                Thread.Sleep(200);
+                Thread.Sleep(100);
             }
 
             
