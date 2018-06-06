@@ -48,7 +48,7 @@ namespace Snake
                 try
                 {
                     
-                    snake.Move(direction, eat);
+                    snake.Move(direction, eat,80,25);
                     if (snake.Zmeya[0].x == fc.Korm.x && snake.Zmeya[0].y == fc.Korm.y)
                     {
                         eat = eat.yes;
@@ -94,7 +94,25 @@ namespace Snake
                             }
 
                         }
-                        snake.Move_(direction);
+                        try
+                        {
+                            snake.Move_(direction);
+                        }
+                        catch (System.ArgumentOutOfRangeException)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.SetCursorPosition(25, 8);
+                            Console.WriteLine("============================");
+                            Console.SetCursorPosition(26, 9);
+                            Console.WriteLine("И Г Р А    О К О Н Ч Е Н А");
+                            Console.SetCursorPosition(30, 10);
+                            Console.WriteLine("Автор: DANISSIMO");
+                            Console.SetCursorPosition(29, 11);
+                            Console.WriteLine("KAK ZGE YA EBASHU!!!");
+                            Console.SetCursorPosition(25, 12);
+                            Console.WriteLine("============================");
+                            
+                        }
                         Thread.Sleep(200);
                     }
                 }
